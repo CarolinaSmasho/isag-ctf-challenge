@@ -19,7 +19,7 @@
         <?php
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // XSS vulnerable point
-            $comment = $_POST["comment"];
+            $comment = htmlspecialchars($_POST["comment"]);
             echo "<p>" . $comment . "</p>";
         }
         ?>

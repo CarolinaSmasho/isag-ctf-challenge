@@ -34,7 +34,7 @@
     // อ่านและแสดงคอมเมนต์
     $commentsFile = 'comments.txt';
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
-        $comment = $_POST['comment'];
+        $comment = ($_POST["comment"]);
         file_put_contents($commentsFile, $comment . PHP_EOL, FILE_APPEND); // บันทึกคอมเมนต์ลงไฟล์
     }
 
