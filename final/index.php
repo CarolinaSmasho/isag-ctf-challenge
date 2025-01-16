@@ -6,47 +6,36 @@
     <title>Vulnerable XSS Website</title>
 </head>
 <body>
-    <h1>Vulnerable XSS Example</h1>
+    <h1>Find a thing you can't see</h1>
 
-
-    <!-- Reflected XSS -->
-    <h2>Search</h2>
-    <form method="GET" action="">
-        <label for="search">Search:</label>
-        <input type="text" id="search" name="search">
-        <button type="submit">Submit</button>
-    </form>
-    <?php
-    if (isset($_GET['search'])) {
-        $search = $_GET['search'];
-        echo "<p>Search results for: $search</p>"; // ช่องโหว่ Reflected XSS
-    }
-    ?>
-
-    <!-- Stored XSS -->
-    <h2>Comments</h2>
     <form method="POST" action="">
-        <label for="comment">Leave a comment:</label>
-        <textarea id="comment" name="comment"></textarea>
-        <button type="submit">Post</button>
+        <label for="comment">Leave a message here:</label>
+        <br />
+        <textarea id="comment" name="comment" style="resize:none; height:30px"></textarea>
+        <button type="submit">add</button>
+        <br />
     </form>
+    <hr>
+    <label for="comment">Your message list:</label>
     <?php
-    // อ่านและแสดงคอมเมนต์
     $commentsFile = 'comments.txt';
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
         $comment = ($_POST["comment"]);
-        file_put_contents($commentsFile, $comment . PHP_EOL, FILE_APPEND); // บันทึกคอมเมนต์ลงไฟล์
+        file_put_contents($commentsFile, $comment . PHP_EOL, FILE_APPEND);
     }
 
     if (file_exists($commentsFile)) {
         $comments = file($commentsFile, FILE_IGNORE_NEW_LINES);
         echo "<ul>";
         foreach ($comments as $comment) {
-            echo "<li>$comment</li>"; // ช่องโหว่ Stored XSS
+            echo "<li>$comment</li>"; 
         }
         echo "</ul>";
     }
     ?>
+    <!-- 
+        getFlag(); is in hidden.js 
+    -->
     
 
 </body>
