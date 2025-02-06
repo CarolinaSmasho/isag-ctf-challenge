@@ -13,10 +13,8 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <ul>
-                <li><a href="http://localhost:8000"> 🏠Home</a></li>
-                <li><a href="http://localhost:8000/explore.php">🔎Explore</a></li>
-                <!-- <li><a href="http://localhost:8000">Subscriptions</a></li> -->
-                <!-- More sidebar items -->
+                <li><a href="index.php"> 🏠Home</a></li>
+                <li><a href="explore.php">🔎Explore</a></li>
             </ul>
         </div>
         <!-- Navigation Bar -->
