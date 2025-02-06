@@ -5,7 +5,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: false,  
+    headless: true,  
     args: ['--disable-web-security', '--no-sandbox', '--disable-dev-shm-usage', '--disable-setuid-sandbox']
   });
 

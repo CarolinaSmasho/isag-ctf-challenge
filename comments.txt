@@ -1,4 +1,2 @@
-test
-hi
-https://www.google.com
-http://localhost/?search=%3Cimg%20src%3D%22does-not-exist%22%20onerror%3D%22alert(document.cookie)%22%3E
+This Video is so great!
+damn this look like https://www.youtube.com

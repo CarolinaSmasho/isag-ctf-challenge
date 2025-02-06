@@ -9,50 +9,41 @@
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">YouTube Clone</div>
-        <div class="search-bar">
-            <form method="GET" action="">
-                <input type="text" name="search" placeholder="Search">
-                <button type="submit">Search</button>
-            </form>
-            <?php
-            if (isset($_GET['search'])) {
-                $searchQuery = $_GET['search']; // ไม่มีการกรองข้อมูล
-                echo "<p>ผลการค้นหาสำหรับ: " . $searchQuery . "</p>"; // XSS ที่นี่
-            }
-            ?>
-
+    <div class="bar-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="http://localhost:8000"> 🏠Home</a></li>
+                <li><a href="http://localhost:8000/explore.php">🔎Explore</a></li>
+                <!-- <li><a href="http://localhost:8000">Subscriptions</a></li> -->
+                <!-- More sidebar items -->
+            </ul>
         </div>
-        <div class="user-options">
-            <!-- Icons for user options can be added here -->
-        </div>
-    </nav>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="logo">YouTube Clone</div>
+            <div class="user-options">
+                <div>
+                    <img id="profile" src="image/profile.png" alt="">
+                </div>
+            </div>
+        </nav>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <ul>
-            <li>Home</li>
-            <li>Explore</li>
-            <li>Subscriptions</li>
-            <!-- More sidebar items -->
-        </ul>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <!-- Video Cards -->
         <div class="video-card">
-            <video width="100%" height="auto" controls>
+            <video width="500px" height="auto" controls>
                 <source src="movie.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <!-- <div class="thumbnail">
             </div> -->
             <div class="video-info">
-                <h3>Kali Thailand</h3>
-                <p>ISAG CTF</p>
+                <h3>Fazbear Thailand</h3>
+                <p><b>ISAG_CTF</b></p>
                 <p>6.9B views • 1/1/2000</p>
             </div>
         </div>
