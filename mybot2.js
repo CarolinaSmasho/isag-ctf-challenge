@@ -15,7 +15,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
   console.log("กำลังเปิดหน้าเว็บ...");
 
-  await page.goto(`http://localhost`, { waitUntil: 'networkidle2' });
+  await page.goto(`http://localhost:8000`, { waitUntil: 'networkidle2' });
 
   console.log("📌 URL ปัจจุบัน:", page.url());
 
@@ -44,7 +44,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
   }
 
   while(true){
-    await page.goto(`http://localhost`, { waitUntil: 'networkidle2' });
+    await page.goto(`http://localhost:8000`, { waitUntil: 'networkidle2' });
 
     console.log("กำลังตรวจสอบลิงก์ในคอมเมนต์...");
     await delay(2000);
