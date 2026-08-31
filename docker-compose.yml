@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.simple
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app/views:/var/www/html
+    environment:
+      - FLAG=${FLAG}
+    networks:
+      - ctf-network
+
+  bot:
+    image: node:20-alpine
+    working_dir: /bot
+    volumes:
+      - ./bot:/bot
+      - ./package.json:/bot/package.json
+      - ./package-lock.json:/bot/package-lock.json
+      - ./node_modules:/bot/node_modules
+      - ./.env:/bot/.env
+    command: sh -c "npm install && node mybot2.js"
+    depends_on:
+      - web
+    environment:
+      - FLAG=${FLAG}
+    networks:
+      - ctf-network
+
+networks:
+  ctf-network:
+    driver: bridge

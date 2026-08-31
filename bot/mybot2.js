@@ -6,7 +6,7 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 (async () => {
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: false,  // Use false for debugging on Mac
       args: [
         "--disable-web-security",
         "--no-sandbox",
@@ -23,7 +23,9 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
     console.log("กำลังเปิดหน้าเว็บ...");
 
-    await page.goto(`http://localhost/index.php`, {
+    // Use localhost:8080 when running on host machine
+    const host = "localhost:8080";
+    await page.goto(`http://${host}/index.php`, {
       waitUntil: "networkidle2",
     });
 
@@ -54,7 +56,7 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     }
 
     while (true) {
-      await page.goto(`http://localhost/index.php`, {
+      await page.goto(`http://${host}/index.php`, {
         waitUntil: "networkidle2",
       });
 
