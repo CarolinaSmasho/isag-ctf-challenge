@@ -13,23 +13,26 @@ services:
       - FLAG=${FLAG}
     networks:
       - ctf-network
+    # Force x86_64 architecture for consistency
+    platform: linux/amd64
 
   bot:
-    image: node:20-alpine
-    working_dir: /bot
+    build:
+      context: .
+      dockerfile: Dockerfile.bot-debian
+    working_dir: /app
     volumes:
-      - ./bot:/bot
-      - ./package.json:/bot/package.json
-      - ./package-lock.json:/bot/package-lock.json
-      - ./node_modules:/bot/node_modules
-      - ./.env:/bot/.env
-    command: sh -c "npm install && node mybot2.js"
+      - ./.env:/app/.env
+    command: node mybot2.js
     depends_on:
       - web
     environment:
       - FLAG=${FLAG}
+      - DOCKER_ENV=true
     networks:
       - ctf-network
+    # Force x86_64 architecture for consistency
+    platform: linux/amd64
 
 networks:
   ctf-network:

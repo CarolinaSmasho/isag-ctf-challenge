@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Clone with Comments</title>
+    <title>Fazbear Tube</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -19,7 +19,7 @@
         </div>
         <!-- Navigation Bar -->
         <nav class="navbar">
-            <div class="logo">YouTube Clone</div>
+            <div class="logo">Fazbear Tube</div>
             <div class="search-bar">
                 <form method="GET" action="">
                     <input type="text" name="search" placeholder="Search">

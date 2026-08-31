@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Clone with Comments</title>
+    <title>Fazbear Tube</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -19,7 +19,7 @@
         </div>
         <!-- Navigation Bar -->
         <nav class="navbar">
-            <div class="logo">YouTube Clone</div>
+            <div class="logo">Fazbear Tube</div>
             <div class="user-options">
                 <div>
                     <img id="profile" src="image/profile.png" alt="">
@@ -41,7 +41,7 @@
             </div> -->
             <div class="video-info">
                 <h3>Fazbear Thailand</h3>
-                <p><b>ISAG_CTF</b></p>
+                <p><b>Fazbear Thailand</b></p>
                 <p>6.9B views • 1/1/2000</p>
             </div>
         </div>
@@ -64,6 +64,13 @@
                 <!-- Submitted comments will appear here -->
                 <?php
                 $commentsFile = 'comments.txt';
+
+                // Clear comments.txt on Docker startup
+                if (isset($_SERVER['DOCKER_STARTUP']) || (isset($_SERVER['HTTP_X_DOCKER_STARTUP']) && $_SERVER['HTTP_X_DOCKER_STARTUP'] === 'true')) {
+                    if (file_exists($commentsFile)) {
+                        file_put_contents($commentsFile, '');
+                    }
+                }
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
                     $comment = htmlspecialchars($_POST["comment"]); // ป้องกัน XSS

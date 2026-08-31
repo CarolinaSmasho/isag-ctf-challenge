@@ -1,11 +1,28 @@
 FROM php:8.2-apache
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql && \
-    a2enmod rewrite
+# Install MySQL extensions with dependencies
+RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libpq-dev \
+    libzip-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd mysqli pdo pdo_mysql \
+    && a2enmod rewrite
 
-COPY app/views /var/www/html/
+# Set working directory
+WORKDIR /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html
+# Copy website files
+COPY app/views/ /var/www/html/
 
-CMD ["apache2-foreground"]
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Expose port 80
+EXPOSE 80
+
+# Use custom entrypoint to clear comments.txt
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

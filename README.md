@@ -1,4 +1,4 @@
-# YouTube Clone CTF Challenge
+# Fazbear Tube CTF Challenge
 
 ## Description
 In this challenge, there is a bot that automatically reads and clicks links on a YouTube page. The bot operates on the page as a regular user, and you are tasked with finding a way to steal the bot's cookies in order to capture the flag.
@@ -78,7 +78,7 @@ http://localhost/explore.php?search=%3Cimg%20src%3D%22does-not-exist%22%20onerro
 ### Exploitation Steps
 1. Create a webhook endpoint to receive stolen cookies (e.g., using a webhook service like requestbin.com, or your own server)
 2. Encode your payload for the search parameter
-3. Post the URL as a comment on the YouTube clone
+3. Post the URL as a comment on the Fazbear Tube
 4. Wait for the bot to click your link
 5. Check your webhook for the stolen cookies containing the flag
 

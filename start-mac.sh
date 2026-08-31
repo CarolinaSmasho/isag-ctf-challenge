@@ -3,7 +3,7 @@
 # Simple script to run on Mac host machine
 # This script starts the PHP web server and the bot
 
-echo "Starting YouTube Clone CTF Challenge on Mac..."
+echo "Starting Fazbear Tube CTF Challenge on Mac..."
 
 # Check if PHP is installed
 if ! command -v php &> /dev/null; then
@@ -66,7 +66,7 @@ echo "✅ Bot started with PID: $BOT_PID"
 
 echo ""
 echo "========================================"
-echo "🎯 CTF Challenge is now running!"
+echo "🎯 CTF Challenge: Fazbear Tube is now running!"
 echo "========================================"
 echo "Web App:  http://localhost:8080"
 echo "Bot PID:  $BOT_PID"

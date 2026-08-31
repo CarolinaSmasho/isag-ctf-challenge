@@ -6,24 +6,23 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 (async () => {
   try {
     // Determine host based on environment
-    // Default to localhost:8080 for Mac
-    let host = "localhost:8080";
-
-    // Check if running in Docker (from environment variable)
-    if (process.env.DOCKER_ENV === "true") {
-      host = "web";
-    }
+    // When running in Docker, use service name "web"
+    // When running locally, use localhost:8080
+    const host = process.env.DOCKER_ENV === "true" ? "web" : "localhost:8080";
 
     console.log(`📌 Bot connecting to: http://${host}`);
+    console.log(`📌 Running in Docker: ${process.env.DOCKER_ENV === "true"}`);
 
     const browser = await puppeteer.launch({
-      headless: process.env.DOCKER_ENV === "true" ? "new" : false,  // "new" for Docker, false for Mac debugging
+      headless: true,  // Use true for Docker
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
         "--disable-dev-shm-usage",
         "--disable-gpu",
       ],
+      // For Alpine Linux in Docker
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
     });
 
     const page = await browser.newPage();
@@ -85,14 +84,8 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
         for (const link of links) {
           try {
-            // Rewrite localhost:8080 URLs to web when in Docker
-            let targetLink = link;
-            if (process.env.DOCKER_ENV === "true") {
-              targetLink = link.replace(/http:\/\/localhost:8080\//g, "http://web/");
-              targetLink = targetLink.replace(/http:\/\/localhost\//g, "http://web/");
-            }
-            console.log(`กำลังกดลิงก์: ${targetLink}`);
-            await page.goto(targetLink);
+            console.log(`กำลังกดลิงก์: ${link}`);
+            await page.goto(link);
             await delay(2000);
           } catch (error) {
             console.log("Error clicking link:", error.message);
