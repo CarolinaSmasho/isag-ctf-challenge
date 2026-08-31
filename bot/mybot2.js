@@ -29,7 +29,7 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
     console.log("📌 URL ปัจจุบัน:", page.url());
 
-    const flag = process.env.ISAG_CTF;
+    const flag = process.env.FLAG;
     console.log("📌 ค่าของ flag:", flag);
 
     if (flag) {
@@ -50,7 +50,7 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
       const cookies = await page.cookies();
       console.log("🎯 คุกกี้ที่ตั้งค่าแล้ว:", cookies);
     } else {
-      console.log("⚠️ ไม่มีค่าของ `ISAG_CTF` ใน .env");
+      console.log("⚠️ ไม่มีค่าของ `FLAG` ใน .env");
     }
 
     while (true) {
