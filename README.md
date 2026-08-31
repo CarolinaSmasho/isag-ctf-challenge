@@ -76,7 +76,7 @@ http://localhost/explore.php?search=%3Cimg%20src%3D%22does-not-exist%22%20onerro
 ```
 
 ### Exploitation Steps
-1. Create a webhook endpoint to receive stolen cookies (e.g., using webhook.site, requestbin.com, or your own server)
+1. Create a webhook endpoint to receive stolen cookies (e.g., using a webhook service like requestbin.com, or your own server)
 2. Encode your payload for the search parameter
 3. Post the URL as a comment on the YouTube clone
 4. Wait for the bot to click your link
@@ -84,7 +84,6 @@ http://localhost/explore.php?search=%3Cimg%20src%3D%22does-not-exist%22%20onerro
 
 ## Webhook Services
 You can use temporary webhook services for testing:
-- https://webhook.site (works for 24-48 hours)
 - https://requestbin.com
 - Or create your own webhook server
 
